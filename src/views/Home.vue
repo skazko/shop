@@ -3,9 +3,7 @@
     <h2>Список товаров</h2>
     <ShopLoader v-if="loading" />
     <ShopAlert v-else-if="error" type="error" :message="error" />
-    <div class="container" v-else>
-      <ProductList :list="productList" />
-    </div>
+    <ProductList v-else :list="productList" />
   </div>
 </template>
 
@@ -39,11 +37,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.container {
-  max-width: 1200px;
-  padding: 30px;
-  margin: 0 auto;
-}
-</style>

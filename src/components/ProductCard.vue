@@ -1,18 +1,19 @@
 <template>
-  <div class="card">
+  <div class="product-card">
     <img :src="image" />
     <div class="footer">
       <h3>{{ product.name }}</h3>
-      <span class="price">{{ price }}</span>
-      <button :disabled="countInCart === 0" @click="decCartItem(product)" class="button">-</button>
-      {{countInCart}}
-      <button @click="incCartItem(product)" class="button">+</button>
+      <span class="product-price">{{ price }}</span>
+      <button :disabled="countInCart === 0" @click="decCartItem(product)" class="product-button">-</button>
+      {{ countInCart }}
+      <button @click="incCartItem(product)" class="product-button">+</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
+const IMG_URL = "https://murmuring-tor-81614.herokuapp.com";
 
 export default {
   props: {
@@ -24,25 +25,25 @@ export default {
   computed: {
     ...mapGetters(["cart"]),
     countInCart() {
-      const cartItem = this.cart.find(p => p.name === this.product.name)
+      const cartItem = this.cart.find((p) => p.name === this.product.name);
       return cartItem ? cartItem.count : 0;
     },
     price() {
       return "$" + this.product.price;
     },
     image() {
-      return "https://murmuring-tor-81614.herokuapp.com" + this.product.image;
+      return IMG_URL + this.product.image;
     },
   },
 
   methods: {
     ...mapActions(["incCartItem", "decCartItem"]),
-  }
+  },
 };
 </script>
 
 <style scoped>
-.card {
+.product-card {
   text-align: center;
   margin: 0 auto;
   background: white;
@@ -51,25 +52,25 @@ export default {
   padding: 10px;
   border-radius: 5px;
   background-color: #eeeeee;
-  height: 100%;
+  height: calc(100% - 20px);
   display: flex;
   flex-direction: column;
 }
-.card:hover {
+.product-card:hover {
   background-color: #ffffff;
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
-.card img {
+.product-card img {
   display: block;
   width: 100%;
 }
-.price {
+.product-price {
   font-size: 24px;
   display: block;
   margin-bottom: 12px;
   font-weight: 700;
 }
-.button {
+.product-button {
   text-decoration: none;
   display: inline-block;
   padding: 0 12px;
@@ -79,14 +80,17 @@ export default {
   font-size: 12px;
   line-height: 28px;
   transition: 0.3s ease-in;
-  cursor: pointer;
   border: none;
   background: #fc5a5a;
 }
-.button:disabled {
+
+.product-button:not(:disabled) {
+  cursor: pointer;
+}
+.product-button:disabled {
   opacity: 0.3;
 }
-.card:hover .button {
+.product-card:hover .product-button {
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 

@@ -4,7 +4,10 @@
       <router-link to="/">Главная</router-link> |
       <router-link to="/cart">Корзина <span v-if="cartCount">({{cartCount}})</span></router-link>
     </div>
-    <router-view />
+    <div class="container">
+      <router-view />
+    </div>
+    
   </div>
 </template>
 
@@ -36,5 +39,10 @@ export default {
 
 .nav a.router-link-exact-active {
   color: #42b983;
+}
+.container {
+  max-width: 1200px;
+  padding: 30px;
+  margin: 0 auto;
 }
 </style>
