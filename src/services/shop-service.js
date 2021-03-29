@@ -5,6 +5,7 @@ export class ShopService {
     this.api = axios.create({
       baseURL: "https://murmuring-tor-81614.herokuapp.com/api/",
     });
+    // так как по сути ручка только одна записал в дефолт аксиоса
     if (queryParams) {
       this.api.defaults.params = queryParams;
     }
