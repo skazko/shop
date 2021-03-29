@@ -2,12 +2,13 @@
   <div class="layout">
     <div class="nav">
       <router-link to="/">Главная</router-link> |
-      <router-link to="/cart">Корзина <span v-if="cartCount">({{cartCount}})</span></router-link>
+      <router-link to="/cart"
+        >Корзина <span v-if="cartCount">({{ cartCount }})</span></router-link
+      >
     </div>
     <div class="container">
       <router-view />
     </div>
-    
   </div>
 </template>
 

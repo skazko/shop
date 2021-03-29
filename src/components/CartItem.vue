@@ -16,7 +16,9 @@
       <span>{{ total }}</span>
     </div>
     <div class="product-action">
-      <button @click="onDelete" class="delete">&times;</button>
+      <base-button @click="onDelete" size="s" color="danger"
+        >&times;</base-button
+      >
     </div>
   </li>
 </template>
@@ -47,13 +49,13 @@ export default {
       return IMG_URL + this.item.image;
     },
     total() {
-      return '$' + (this.item.price * this.item.count).toFixed(2)
-    }
+      return "$" + (this.item.price * this.item.count).toFixed(2);
+    },
   },
   methods: {
     ...mapActions(["setCartItemCount"]),
     onBlur() {
-      this.count = this.item.count
+      this.count = this.item.count;
     },
     onDelete() {
       this.setCartItemCount({ product: this.item, count: 0 });
@@ -82,7 +84,6 @@ export default {
   position: relative;
   margin-bottom: 20px;
   transition: transform 0.8s;
-  /* display: flex; */
 }
 
 .product-image {
@@ -124,17 +125,6 @@ export default {
   margin-right: 5px;
 }
 
-.product-count button {
-  margin-left: 5px;
-  background-color: forestgreen;
-  padding: 3px 6px;
-  color: #ffffff;
-}
-
-.product-count button:active {
-  background-color: rgb(12, 102, 12);
-}
-
 .product-total {
   text-align: right;
 }
@@ -145,29 +135,6 @@ export default {
   right: 0;
   padding: 3px;
 }
-
-button {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-}
-
-button:focus,
-button:hover {
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-}
-
-.product-action .delete {
-  background-color: firebrick;
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.product-action .delete:active {
-  background-color: rgb(151, 16, 16);
-}
-
 
 @media (min-width: 600px) {
   .cart-item {

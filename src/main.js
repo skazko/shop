@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { ShopService } from "./services/shop-service";
+import BaseButton from "./components/BaseButton";
 
 Vue.config.productionTip = false;
 
@@ -15,6 +16,8 @@ window.app = {
 
     const shopService = new ShopService(queryParams);
     Vue.prototype.$shopService = shopService;
+
+    Vue.component("base-button", BaseButton);
 
     new Vue({
       router,

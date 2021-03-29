@@ -1,7 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { getLSdata, setLSdata } from "../utils/localStorage";
-import { UPDATE_CART_ITEM, REMOVE_FROM_CART, ADD_TO_CART } from "./mutation-types";
+import {
+  UPDATE_CART_ITEM,
+  REMOVE_FROM_CART,
+  ADD_TO_CART,
+  CLEAR_CART,
+} from "./mutation-types";
 
 Vue.use(Vuex);
 
@@ -12,8 +17,13 @@ const initState = () => ({
 export default new Vuex.Store({
   state: initState,
   getters: {
-    cartCount: (state) => state.cart.reduce((count, product) => count + product.count, 0),
-    cartTotal: (state) => '$' + state.cart.reduce((sum, product) => sum + product.count * product.price, 0).toFixed(2),
+    cartCount: (state) =>
+      state.cart.reduce((count, product) => count + product.count, 0),
+    cartTotal: (state) =>
+      "$" +
+      state.cart
+        .reduce((sum, product) => sum + product.count * product.price, 0)
+        .toFixed(2),
     cart: (state) => state.cart,
   },
   mutations: {
@@ -30,6 +40,10 @@ export default new Vuex.Store({
       state.cart = state.cart.filter((p) => p.name !== product.name);
       setLSdata("cart", state.cart);
     },
+    [CLEAR_CART]: (state) => {
+      state.cart = [];
+      setLSdata("cart", state.cart);
+    },
   },
   actions: {
     incCartItem({ commit, state }, product) {
@@ -44,7 +58,10 @@ export default new Vuex.Store({
       const productFromCart = state.cart.find((p) => p.name === product.name);
       if (productFromCart) {
         if (productFromCart.count > 1) {
-          commit(UPDATE_CART_ITEM, { product, count: productFromCart.count - 1 });
+          commit(UPDATE_CART_ITEM, {
+            product,
+            count: productFromCart.count - 1,
+          });
         } else {
           commit(REMOVE_FROM_CART, product);
         }

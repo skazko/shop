@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>Список товаров</h2>
+    <h1>Список товаров</h1>
     <ShopLoader v-if="loading" />
     <ShopAlert v-else-if="error" type="error" :message="error" />
     <ProductList v-else :list="productList" />

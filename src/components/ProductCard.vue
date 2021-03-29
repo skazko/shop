@@ -4,9 +4,14 @@
     <div class="footer">
       <h3>{{ product.name }}</h3>
       <span class="product-price">{{ price }}</span>
-      <button :disabled="countInCart === 0" @click="decCartItem(product)" class="product-button">-</button>
+      <base-button
+        size="l"
+        :disabled="countInCart === 0"
+        @click="decCartItem(product)"
+        >-</base-button
+      >
       {{ countInCart }}
-      <button @click="incCartItem(product)" class="product-button">+</button>
+      <base-button size="l" @click="incCartItem(product)">+</base-button>
     </div>
   </div>
 </template>
@@ -69,29 +74,6 @@ export default {
   display: block;
   margin-bottom: 12px;
   font-weight: 700;
-}
-.product-button {
-  text-decoration: none;
-  display: inline-block;
-  padding: 0 12px;
-  background: #cccccc;
-  color: white;
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 28px;
-  transition: 0.3s ease-in;
-  border: none;
-  background: #fc5a5a;
-}
-
-.product-button:not(:disabled) {
-  cursor: pointer;
-}
-.product-button:disabled {
-  opacity: 0.3;
-}
-.product-card:hover .product-button {
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
 .footer {

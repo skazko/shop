@@ -24,9 +24,9 @@ export default {
       return {
         alert: true,
         [this.type]: true,
-      }
-    }
-  }
+      };
+    },
+  },
 };
 </script>
 
@@ -50,5 +50,4 @@ export default {
 .info {
   background-color: deepskyblue;
 }
-
 </style>
